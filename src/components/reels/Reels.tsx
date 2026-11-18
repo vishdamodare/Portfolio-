@@ -4,9 +4,12 @@ import { AnimatePresence, motion, useInView, useScroll, useTransform } from "mot
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { creator, type MediaItem, type MediaKind } from "@/data/creator";
 import { dur, ease } from "@/lib/motion";
+import { whatsapp } from "@/lib/format";
 import { jumpTo } from "@/lib/lenis";
 import { useMedia } from "@/lib/reduced-motion";
 import { SplitText } from "../ui/SplitText";
+
+const collabHref = whatsapp(creator.phone, creator.collabReelMessage);
 
 const FILTERS: [string, MediaKind | "all"][] = [
   ["All", "all"],
@@ -189,6 +192,14 @@ export function Reels() {
             {label}
           </button>
         ))}
+        <a
+          href={collabHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          Book a collab reel <span aria-hidden>↗</span>
+        </a>
       </div>
     </div>
   );
@@ -216,6 +227,29 @@ export function Reels() {
               </motion.li>
             ))}
           </AnimatePresence>
+          {/* Always-last tile: a direct WhatsApp ask for a collaboration reel. */}
+          <motion.li layout transition={{ duration: dur.ui, ease: ease.reveal }}>
+            <a
+              href={collabHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ aspectRatio: "9/16" }}
+              className={`group flex flex-col justify-between rounded-3xl bg-accent p-6 text-white ${jack ? "h-[58svh]" : "w-full"}`}
+            >
+              <span className="text-xs uppercase tracking-[0.24em] text-white/80">Collab reel</span>
+              <span className="font-display text-4xl leading-[0.95] md:text-5xl">
+                Your brand
+                <br />
+                <em>here.</em>
+              </span>
+              <span className="flex items-center justify-between gap-2 text-sm font-medium">
+                Chat on WhatsApp
+                <span aria-hidden className="grid size-10 place-items-center rounded-full bg-white text-accent transition-transform duration-300 group-hover:translate-x-1">
+                  ↗
+                </span>
+              </span>
+            </a>
+          </motion.li>
         </motion.ul>
       </div>
       <Lightbox items={viewable} index={open} setIndex={setOpen} />

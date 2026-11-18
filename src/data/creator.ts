@@ -28,6 +28,7 @@ export const creator = {
   tagline: "*Lifestyle* that moves.",
   phone: "+91 7304338493",
   whatsappMessage: "Hi Abhishek! I found you through your website and I'd like to discuss a brand collaboration.",
+  collabReelMessage: "Hi Abhishek! I saw your reels on your website and I'd love to do a collaboration reel with you for my brand. Can we discuss the details?",
   email: "abhisheksoni0028@gmail.com",
   instagram: "https://instagram.com/er.abhiii",
 

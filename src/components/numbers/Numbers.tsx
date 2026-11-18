@@ -21,7 +21,17 @@ const STATS = [
 const N = STATS.length;
 const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
-const footnote = `Reels published in the same 90 days: ${i90.reels}.`;
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+const footnote =`Reels published in the same 90 days: ${i90.reels}.`;
 
 /** Pinned (CSS sticky) sequence; scroll progress scrubs through the stats with count-ups. */
 export function Numbers() {
@@ -81,6 +91,14 @@ export function Numbers() {
               </span>
               <span className="text-canvas/50">{String(N).padStart(2, "0")}</span>
             </div>
+            <a
+              href={creator.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] px-5 py-3 text-sm font-medium text-white shadow-lg shadow-[#dd2a7b]/20 transition-transform duration-200 hover:scale-[1.03]"
+            >
+              <InstagramIcon /> Follow {creator.handle} on Instagram <span aria-hidden>↗</span>
+            </a>
           </div>
 
           <div className="relative h-[28svh] md:col-span-7 md:h-[52svh]">
@@ -119,6 +137,18 @@ export function Numbers() {
           </div>
         </div>
         <p className="container-x mt-10 text-xs text-canvas/60">{footnote}</p>
+
+        {/* Pinned sections can look "stuck"; tell people there is more below. */}
+        <motion.div
+          aria-hidden
+          initial={false}
+          animate={{ opacity: active < N - 1 ? 1 : 0 }}
+          transition={{ duration: dur.ui }}
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-1 text-xs uppercase tracking-[0.24em] text-canvas/70"
+        >
+          <span>Keep scrolling · {N - 1 - active} more</span>
+          <span className="animate-bounce text-lg leading-none">↓</span>
+        </motion.div>
       </div>
     </section>
   );

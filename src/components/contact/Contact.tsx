@@ -89,7 +89,7 @@ export function Contact() {
               <a href={`tel:${creator.phone.replace(/\s/g, "")}`} className="inline-flex items-center justify-center rounded-full border border-line px-6 py-3.5 text-sm hover:border-ink">
                 {creator.phone}
               </a>
-              <a href={creator.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-line px-6 py-3.5 text-sm hover:border-ink">
+              <a href={creator.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] px-6 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90">
                 Instagram {creator.handle} <span aria-hidden className="ml-1">↗</span>
               </a>
           </div>
