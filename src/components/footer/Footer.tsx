@@ -23,7 +23,7 @@ export function Footer() {
           </a>
         <p className="text-muted">© 2026 {creator.name}.</p>
       </div>
-      <div aria-hidden className="relative mt-10 text-center">
+      <div aria-hidden className="pointer-events-none relative mt-10 text-center">
         <span className={type} style={{ WebkitTextStroke: "1px var(--color-ink)", color: "transparent" }}>
           {word}
         </span>
@@ -32,6 +32,24 @@ export function Footer() {
             {word}
           </motion.span>
         </motion.span>
+      </div>
+      <div className="border-t border-line">
+        <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted sm:flex-row">
+          <p className="flex flex-wrap items-center justify-center gap-2">
+            Designed &amp; built by <span className="font-semibold text-ink">Vish Damodare</span>
+            <a
+              href="https://instagram.com/vish_damodare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-lavender px-2.5 py-0.5 font-medium text-accent transition-colors hover:bg-accent hover:text-canvas"
+            >
+              @vish_damodare ↗
+            </a>
+          </p>
+          <a href="mailto:vishdamodare10@gmail.com" className="transition-colors hover:text-ink">
+            vishdamodare10@gmail.com
+          </a>
+        </div>
       </div>
     </footer>
   );
